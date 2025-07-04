@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fire Weather Index Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: white;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 15px 20px;
+            background-color: #e6f7e6;
+            border: 1px solid #66cc66;
+            border-radius: 8px;
+            color: #2d662d;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fire Weather Index (FWI) Prediction</h1>
+    <form method="POST" action="/predictdata">
+        <label>Temperature (°C):</label>
+        <input type="number" name="Temperature" step="any" required>
+
+        <label>Relative Humidity (%):</label>
+        <input type="number" name="RH" step="any" required>
+
+        <label>Wind Speed (km/h):</label>
+        <input type="number" name="Ws" step="any" required>
+
+        <label>Rain (mm):</label>
+        <input type="number" name="Rain" step="any" required>
+
+        <label>FFMC:</label>
+        <input type="number" name="FFMC" step="any" required>
+
+        <label>DMC:</label>
+        <input type="number" name="DMC" step="any" required>
+
+        <label>DC:</label>
+        <input type="number" name="DC" step="any" required>
+
+        <label>ISI:</label>
+        <input type="number" name="ISI" step="any" required>
+
+        <label>BUI:</label>
+        <input type="number" name="BUI" step="any" required>
+
+        <input type="submit" value="Predict FWI">
+    </form>
+
+    {% if result is not none %}
+    <div class="result-box">
+        🔥 Predicted Fire Weather Index (FWI): <strong>{{ result }}</strong>
+    </div>
+    {% endif %}
+</body>
+</html>
